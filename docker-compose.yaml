@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  mc:
+    image: itzg/minecraft-server:java8
+    volumes:
+      - data:/data
+      - ./modpacks:/modpacks:ro
+    environment:
+      EULA: "true"
+      TYPE: "FORGE"
+      FORGE_VERSION: "14.23.5.2860"
+      VERSION: "1.12.2"
+      MEMORY: "8G"
+      MOTD: "myMessage"
+      GENERIC_PACK: "/modpacks/Hexxit-II_Server_v1.5.1.zip"
+      REMOVE_OLD_MODS: "true"
+      DIFFICULTY: "normal"
+      MAX_PLAYERS: "5"
+      SPAWN_PROTECTION: "0"
+      ALLOW_NETHER: "true"
+      ANNOUNCE_PLAYER_ACHIEVEMENTS: "true"
+      GENERATE_STRUCTURES: "true"
+      HARDCORE: "false"
+      MAX_BUILD_HEIGHT: "256"
+      SPAWN_ANIMALS: "true"
+      SPAWN_MONSTERS: "true"
+      SPAWN_NPCS: "true"
+      MODE: "survival"
+      PVP: "true"
+      LEVEL_TYPE: "minecraft:default"
+      ALLOW_FLIGHT: "true"
+      SERVER_NAME: "myServer"
+      OPS: |
+        user1
+        user2
+    ports:
+      - "25565:25565"
+    stdin_open: "true"
+    tty: true
+    restart: unless-stopped
+
+volumes:
+  data: {}
